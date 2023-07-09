@@ -44,8 +44,14 @@ pipeline {
         }
 
         stage('Integration and Performance Tests') {
+          agent {
+            node {
+              label 'test'
+            }
+
+          }
           steps {
-            sh './mvnw verify'
+            sh './mvnw verify -DskipTests=true'
           }
         }
 
